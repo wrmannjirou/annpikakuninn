@@ -112,12 +112,15 @@
             copy_target.select();
             document.execCommand("Copy");
             alert("Copied：" + copy_target.value);
-        }
+            }
+            function paste(){
+
+            }
         </script>
         <p>
             Ver.δ：
             <ol>
-                <li>冪乗演算子の後に連続する整数を上付き文字の指数に変換する機能を追加</li>
+                <li>冪乗演算子の後に連続する整数を上付き文字の指数に変換する機能を追加<br>例:(a+b+c)^10→(𝑎+𝑏+𝑐)¹⁰</li>
                 <li>Clearボタン、Copyボタンを追加</li>
             </ol>
         </p>
