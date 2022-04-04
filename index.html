@@ -54,13 +54,16 @@
                     var exponents = array_exponents.join("");
                     //console.log(exponents);
                     //抽出された指数を上付き文字に関数convertion(exponents)を用いて変換し、変数exponents_extractedに格納
-                    var exponents_replaced = convertion(exponents);
+                    var exponents_replaced = convertion_2(exponents);
                     return exponents_replaced
                 }
                 
             }
+            var test = "(x^2)^2+2x^2+1-x^2";
+            console.log("test:" + test);
+            console.log("er():" + exponent_replace(test));
             //抽出された指数を上付き文字に変換・関数exponent_replace(input_2)内で使用
-            function convertion(extracted){
+            /*function convertion(extracted){
                 var extracted_0 = extracted.replaceAll("0", "⁰");
                 var extracted_1 = extracted_0.replaceAll("1", "¹");
                 var extracted_2 = extracted_1.replaceAll("2", "²");
@@ -71,6 +74,21 @@
                 var extracted_7 = extracted_6.replaceAll("7", "⁷");
                 var extracted_8 = extracted_7.replaceAll("8", "⁸");
                 var extracted_9 = extracted_8.replaceAll("9", "⁹");
+                return extracted_9
+            }*/
+            function convertion_2(extracted){
+                var extracted_0 = extracted.replaceAll("^0", "⁰");
+                var extracted_1 = extracted_0.replaceAll("^1", "¹");
+                console.log(extracted_1);
+                var extracted_2 = extracted_1.replaceAll("^2", "²");
+                var extracted_3 = extracted_2.replaceAll("^3", "³");
+                var extracted_4 = extracted_3.replaceAll("^4", "⁴");
+                var extracted_5 = extracted_4.replaceAll("^5", "⁵");
+                var extracted_6 = extracted_5.replaceAll("^6", "⁶");
+                var extracted_7 = extracted_6.replaceAll("^7", "⁷");
+                var extracted_8 = extracted_7.replaceAll("^8", "⁸");
+                var extracted_9 = extracted_8.replaceAll("^9", "⁹");
+                console.log(extracted_9);
                 return extracted_9
             }
 
@@ -94,15 +112,19 @@
                 return where_exponentiation
             }
 
-            function convert_a_g_e(){
+            /*function convert_a_g_e(){
                 var input = "clr^" + document.getElementById("input_place").value;
                 console.log(input);
                 //console.log(exponent_replace(input));
                 //console.log(exponent_replace(input).replaceAll("^", ""));
                 var output = convert(exponent_replace(input).replaceAll("^", ""));
                 output_place.innerHTML = output
+            }*/
+            function convert_a_g_e(){
+                var input = document.getElementById("input_place").value;
+                var output = convert(convertion_2(input));
+                output_place.innerHTML = output
             }
-
             function clr(){
                 window.location.reload();
             }
@@ -112,9 +134,6 @@
             copy_target.select();
             document.execCommand("Copy");
             alert("𝐶𝑜𝑝𝑖𝑒𝑑：" + copy_target.value);
-            }
-            function paste(){
-
             }
         </script>
         <p>
