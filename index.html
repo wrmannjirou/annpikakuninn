@@ -9,37 +9,125 @@
 <body>
     <div>
         <header>
-            <h1>文字自動置換γ</h1>
+            <h1>文字自動置換Ver.δ</h1>
         </header>
         <p>
             <textarea type="text" id="input_place" placeholder="任意の文字列" style="width:200px;height:100px;"></textarea>
-            <input type="button" id="button" class="btn" value="Convert" onclick="convertion()" style="width:70px;height:30px;">
-            <input type="button" id="clrbtn_input" class="btn" value="Clear" onclick="clr_input()" style="width:50px;height:30px;">
+            <input type="button" id="button" class="btn" value="Convert" onclick="convert_a_g_e()" style="width:70px;height:30px;">
         </p>
         <p>
             <textarea id="output_place" placeholder="出力結果" style="width:200px;height:100px;"></textarea>
+            <input type="button" id="copybtn" class="btn" value="Copy" onclick="copy()" style="width:70px;height:30px;">
+        </p>
+        <p>
+            <input type="button" id="clrbtn" class="btn" value="Clear" onclick="clr()" style="width:50px;height:30px;">
         </p>
         <script type="text/javascript">
-            function convert(input){
-                const array_1="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω";
-                const array_2 = new Array ("𝐴", "𝐵", "𝐶", "𝐷", "𝐸", "𝐹", "𝐺", "𝐻", "𝐼", "𝐽", "𝐾", "𝐿", "𝑀", "𝑁", "𝑂", "𝑃", "𝑄", "𝑅", "𝑆", "𝑇", "𝑈", "𝑉", "𝑊", "𝑋", "𝑌", "𝑍", "𝑎", "𝑏", "𝑐", "𝑑", "𝑒", "𝑓", "𝑔", "ℎ", "𝑖", "𝑗", "𝑘", "𝑙", "𝑚", "𝑛", "𝑜", "𝑝", "𝑞", "𝑟", "𝑠", "𝑡", "𝑢", "𝑣", "𝑤", "𝑥", "𝑦", "𝑧", "𝛢", "𝛣", "𝛤", "𝛥", "𝛦", "𝛧", "𝛨", "𝛩", "𝛪", "𝛫", "𝛬", "𝛭", "𝛮", "𝛯", "𝛰", "𝛱", "𝛲", "𝛴", "𝛵", "𝛶", "𝛷", "𝛸", "𝛹", "𝛺", "𝛼", "𝛽", "𝛾", "𝛿", "𝜀", "𝜁", "𝜂", "𝜃", "𝜄", "𝜅", "𝜆", "𝜇", "𝜈", "𝜉", "𝜊", "𝜋", "𝜌", "𝜎", "𝜏", "𝜐", "𝜑", "𝜒", "𝜓", "𝜔");
-                var res = new Array(input.length);
-                for(var i = 0 ; i < input.length ; i++){
-                    res[i] = input[i];
-                    var idx = array_1.indexOf(input[i]);
+            //アルファベット・ギリシャ文字をイタリック体に変換
+            function convert(input_1){                
+                const array_1="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω0123456789";
+                const array_2 = new Array ("𝐴", "𝐵", "𝐶", "𝐷", "𝐸", "𝐹", "𝐺", "𝐻", "𝐼", "𝐽", "𝐾", "𝐿", "𝑀", "𝑁", "𝑂", "𝑃", "𝑄", "𝑅", "𝑆", "𝑇", "𝑈", "𝑉", "𝑊", "𝑋", "𝑌", "𝑍", "𝑎", "𝑏", "𝑐", "𝑑", "𝑒", "𝑓", "𝑔", "ℎ", "𝑖", "𝑗", "𝑘", "𝑙", "𝑚", "𝑛", "𝑜", "𝑝", "𝑞", "𝑟", "𝑠", "𝑡", "𝑢", "𝑣", "𝑤", "𝑥", "𝑦", "𝑧", "𝛢", "𝛣", "𝛤", "𝛥", "𝛦", "𝛧", "𝛨", "𝛩", "𝛪", "𝛫", "𝛬", "𝛭", "𝛮", "𝛯", "𝛰", "𝛱", "𝛲", "𝛴", "𝛵", "𝛶", "𝛷", "𝛸", "𝛹", "𝛺", "𝛼", "𝛽", "𝛾", "𝛿", "𝜀", "𝜁", "𝜂", "𝜃", "𝜄", "𝜅", "𝜆", "𝜇", "𝜈", "𝜉", "𝜊", "𝜋", "𝜌", "𝜎", "𝜏", "𝜐", "𝜑", "𝜒", "𝜓", "𝜔", "𝟶", "𝟷", "𝟸", "𝟹", "𝟺", "𝟻", "𝟼", "𝟽", "𝟾", "𝟿");
+                var res = new Array(input_1.length);
+                for(var i = 0; i < input_1.length; i++){
+                    res[i] = input_1[i];
+                    var idx = array_1.indexOf(input_1[i]);
                     if(idx >= 0){
                         res[i] = array_2[idx];
                     }
                 }
-                return res.join("")
+                return res.join("");
             }
-            function convertion(){
-                var input_1 = document.getElementById("input_place");
-                output_place.innerHTML = convert(input_1.value);
+
+            //入力文字列から指数を抽出し、上付き文字に変換する
+            function exponent_replace(input_2){
+                var e_p = input_2.indexOf("^");
+                //console.log(e_p);
+                if(e_p >= 0){
+                    //変換前の指数を抽出し、配列array_exponentsに格納
+                    var array_exponents = [];
+                    for(var i = 1; i < input_2.length - e_p; i++){
+                        if(isNaN(input_2.substr(e_p + i, 1).value) == true){
+                            array_exponents.push(input_2.substr(e_p + i, 1));
+                        }
+                    }
+                    //抽出された指数の格納される配列array_exponents内の要素を結合し、変数exponentsに代入
+                    var exponents = array_exponents.join("");
+                    //console.log(exponents);
+                    //抽出された指数を上付き文字に関数convertion(exponents)を用いて変換し、変数exponents_extractedに格納
+                    var exponents_replaced = convertion(exponents);
+                    return exponents_replaced
+                }
+                
             }
-            function clr_input(){
-                document.getElementById("input_place").value = "";
+            //抽出された指数を上付き文字に変換・関数exponent_replace(input_2)内で使用
+            function convertion(extracted){
+                var extracted_0 = extracted.replaceAll("0", "⁰");
+                var extracted_1 = extracted_0.replaceAll("1", "¹");
+                var extracted_2 = extracted_1.replaceAll("2", "²");
+                var extracted_3 = extracted_2.replaceAll("3", "³");
+                var extracted_4 = extracted_3.replaceAll("4", "⁴");
+                var extracted_5 = extracted_4.replaceAll("5", "⁵");
+                var extracted_6 = extracted_5.replaceAll("6", "⁶");
+                var extracted_7 = extracted_6.replaceAll("7", "⁷");
+                var extracted_8 = extracted_7.replaceAll("8", "⁸");
+                var extracted_9 = extracted_8.replaceAll("9", "⁹");
+                return extracted_9
             }
+
+            //変数value内に含まれる冪乗演算子の位置を調べる
+            function where_is_exponentiation(value){
+                //変数value内に含まれる冪乗演算子の個数を調べる
+                var hat_count = value.match(/\^/g).length;
+                //冪乗演算子の位置を格納するための(要素数)=(冪乗演算子の個数)である配列array_place_countを宣言
+                var array_place_count = [];
+                //冪乗演算子の位置を調べ、何文字目かを配列array_place_countに格納
+                //console.log(value.indexOf("^"));
+                for(var p = 1; p <= value.length; p++){
+                    array_place_count.push(value.indexOf("^", p));
+                }
+                //配列array_place_count内での重複を排除
+                var where_exponentiation_0 = [...new Set(array_place_count)]
+                //メソッド.indexOfで返された-1を排除
+                var where_exponentiation = where_exponentiation_0.filter(function(value){
+                    return value >= 0;
+                })
+                return where_exponentiation
+            }
+
+            function convert_a_g_e(){
+                var input = "clr^" + document.getElementById("input_place").value;
+                console.log(input);
+                //console.log(exponent_replace(input));
+                //console.log(exponent_replace(input).replaceAll("^", ""));
+                var output = convert(exponent_replace(input).replaceAll("^", ""));
+                output_place.innerHTML = output
+            }
+            //var test_1 = "xyz^123+abc^321+pqr^123";
+            //console.log("test_1:" + test_1);
+            //console.log(convert(test_1));
+            /*
+                console.log(exponent_replace(test_1));
+                var aaa = ""
+                for(var s = 0; s <= test_1.match(/\^/g).length; s++){
+                    aaa = exponent_replace(test_1);
+                }
+                console.log(aaa);*/
+            
+            //console.log(where_is_exponentiation(test_1));
+            //var exponent_w = where_is_exponentiation(test_1);
+            //console.log(exponent_w);
+            //console.log(test_1)
+
+            function clr(){
+                window.location.reload();
+            }
+
+            function copy(){
+            var copy_target = document.getElementById("output_place");
+            copy_target.select();
+            document.execCommand("Copy");
+            alert("Copied：" + copy_target.value);
+        }
         </script>
     </div>
 </body>
