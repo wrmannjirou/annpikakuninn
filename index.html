@@ -65,7 +65,7 @@
                 var hat_count = value.match(/\^/g).length;
                 //冪乗演算子の位置を格納するための(要素数)=(冪乗演算子の個数)である配列array_place_countを宣言
                 var array_place_count = [];
-                //console.log(value.indexOf("^"));
+                ///console.log(value.indexOf("^"));
                 //冪乗演算子の位置を調べ、何文字目かを配列array_place_countに格納
                 for(var p = 1; p <= value.length; p++){
                     array_place_count.push(value.indexOf("^", p));
@@ -82,11 +82,11 @@
 
             //入力文字列から指数を抽出し、上付き文字に変換する
             function exponent_replace(input_2){
-                //console.log("input_2:" + input_2);
+                ///console.log("input_2:" + input_2);
                 //冪乗演算子の位置をwhere_is_exponentiation(input_2)を格納する配列e_pを宣言
                 var e_p = where_is_exponentiation(input_2);
-                //console.log("e_p:" + e_p);
-                //console.log("e_p.length:" + e_p.length);
+                ///console.log("e_p:" + e_p);
+                ///console.log("e_p.length:" + e_p.length);
                 //変換前の指数を抽出し、格納する配列array_exponentsを宣言
                 var array_exponents = [];
                 //変換後の指数を格納する配列exponent_replacedを宣言
@@ -95,28 +95,28 @@
                 for(var u = 0; u <= e_p.length; u++){
                     //「冪乗演算子が見つけらない」⇔「e_p[u] < 0」場合を排除
                     if(e_p[u] >= 0){
-                        //console.log("e_p["+ u + "]:" + e_p[u]);
+                        ///console.log("e_p["+ u + "]:" + e_p[u]);
                         //substrメソッドで冪乗演算子の直後の文字列を一文字ずつ切り出すし、切り出された文字列が数か否かをisNaN関数を用いて判定
                         //数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了
                         for(var i = 1; i < input_2.length - e_p[u] && isNaN(input_2.substr(e_p[u] + i, 1)) == false; i++){
-                            //console.log("input_2.substr(e_p[u] + i, 1):" + input_2.substr(e_p[u] + i, 1));
-                            //console.log("input_2.substr(e_p[u] + 1, 1):抽出された指数:" + input_2.substr(e_p[u] + i, 1))
+                            ///console.log("input_2.substr(e_p[u] + i, 1):" + input_2.substr(e_p[u] + i, 1));
+                            ///console.log("input_2.substr(e_p[u] + 1, 1):抽出された指数:" + input_2.substr(e_p[u] + i, 1))
                             array_exponents.push(input_2.substr(e_p[u] + i, 1));
                         }
-                        //console.log("抽出された指数:" + array_exponents);
+                        ///console.log("抽出された指数:" + array_exponents);
                         //抽出された指数の格納される配列array_exponents内の要素を結合し、変数exponentsに代入
                         var exponents = array_exponents.join("")
                         /*変換前の指数の格納される配列array_exponentsは、
                         次の冪乗演算子の位置に対する処理(現在のe_pのインデックスに1を足したときの処理)でも使用するので一旦初期化*/
                         array_exponents = [];
-                        //console.log("抽出・結合された指数:" + exponents);
+                        ///console.log("抽出・結合された指数:" + exponents);
                         //抽出された指数を上付き文字に関数convertion(exponents)を用いて変換し、変数exponents_extractedに格納
                         exponent_replaced.push(convertion(exponents));
                     }
                 }
                 //抽出された上付き文字に変換された指数を関数の返り値に設定
                 return exponent_replaced
-                //console.log(exponent_replaced);
+                ///console.log(exponent_replaced);
             }
             //アルファベット・ギリシャ文字・数字を変換
             function convert(input_1){                
@@ -144,17 +144,17 @@
             function convert_a_g_e(){
                 //入力場所であるtextareaタグから要素を取得し、これを格納する変数inputを宣言
                 var input = document.getElementById("input_place").value;
-                //console.log("入力:" + input);
+                ///console.log("入力:" + input);
                 /*冪乗演算子が含まれている場合は関数exponent_replace(input)を実行、
                 含まれていない場合は関数exponent_replace(input)を実行しないよう条件分岐*/
                 if(input.indexOf("^") >= 0){
                     //関数exponent_replace(input)で上付き文字に変換された指数を格納する配列output_eを宣言
                     var output_e = exponent_replace(input);
-                    //console.log("output_e:" + output_e);
+                    ///console.log("output_e:" + output_e);
                     //関数where_is_exponentiation(input)で特定した冪乗演算子の位置を格納する配列where_exponentiationを宣言
                     var where_exponentiation = where_is_exponentiation(input);
-                    //console.log("^の場所:" + where_exponentiation);
-                    //console.log("繰り返し回数:" + where_exponentiation.length)
+                    ///console.log("^の場所:" + where_exponentiation);
+                    ///console.log("繰り返し回数:" + where_exponentiation.length)
                     //変換された指数が挿入された文字列を格納する配列array_insertionを宣言
                     var array_insertion = [];
                     //配列array_insertionに変換前の入力文字列を代入
@@ -168,13 +168,13 @@
                     5.手順4.を終えた文字列(最初の冪乗演算子とそれに続く指数が変換済み)に対して、
                       for文を用いて手順1~4を冪乗演算子の数(where_exponentiation.length)の分だけ繰り返す*/
                     for(var i = 0; i < where_exponentiation.length; i++){
-                        //console.log(">>>")//i番目の繰り返しの始まり
-                        //console.log("^の位置:" + array_insertion[i].indexOf("^"));
-                        //console.log("output_e[i]:" + output_e[i]);
-                        //console.log("指数の文字数:" + output_e[i].length)
+                        ///console.log(">>>")//i番目の繰り返しの始まり
+                        ///console.log("^の位置:" + array_insertion[i].indexOf("^"));
+                        ///console.log("output_e[i]:" + output_e[i]);
+                        ///console.log("指数の文字数:" + output_e[i].length)
                         //手順2.文字列の最初から最初の冪乗演算子までを切り出す
                         var input_substred = array_insertion[i].substr(0, array_insertion[i].indexOf("^"));
-                        //console.log("input_substred:" + input_substred);
+                        ///console.log("input_substred:" + input_substred);
                         /*手順3.最初の冪乗演算子に続く指数部分の後から文字数の最後までを切り出す
                         この際、冪乗演算子とそれに続く変換前の指数を除外するために、
                         sliceメソッドの第一位引数(開始位置)に冪乗演算子の文字数(=1)と指数の文字数(output_e[i].length)を足す*/
@@ -182,13 +182,13 @@
                         /*手順4.前の2つの切り出された文字列(input_substred、input_sliced)の間に、
                         i番目の変換後の指数(output_e[i])を挿入し、これら3つを結合*/
                         var input_trimed = input_substred + output_e[i] + input_sliced;
-                        //console.log("trimed:"+ input_trimed);
+                        ///console.log("trimed:"+ input_trimed);
                         //変換された指数が挿入された文字列を配列array_insertionに格納
                         array_insertion.push(input_trimed);
-                        //console.log("出力:" + array_insertion);
-                        //console.log("<<<")//i番目の繰り返しの終わり
+                        ///console.log("出力:" + array_insertion);
+                        ///console.log("<<<")//i番目の繰り返しの終わり
                     }
-                    //console.log(array_insertion[array_insertion.length -1]);
+                    ///console.log(array_insertion[array_insertion.length -1]);
                     /*変換された指数が挿入された文字列が格納されているのは、
                     配列array_insertionの最後のインデックス(array_insertion.length -1)なのでこれを右辺として、
                     指数が変換された文字列を格納する変数outputを宣言*/
