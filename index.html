@@ -44,7 +44,7 @@
                 return extracted_9
             }
             //指数変換用関数・convertion(extracted)が不具合時に使用(一桁の指数にのみ対応)
-            function convertion_2(extracted){
+            /*function convertion_2(extracted){
                 //引数extracted:抽出された指数
                 var extracted_0 = extracted.replaceAll("^0", "⁰");
                 var extracted_1 = extracted_0.replaceAll("^1", "¹");
@@ -58,7 +58,7 @@
                 var extracted_9 = extracted_8.replaceAll("^9", "⁹");
                 //0~9の数字が上付き文字に変換された文字列の格納される変数extracted_9を関数の返り値に設定
                 return extracted_9
-            }
+            }*/
 
             //変数value内に含まれる冪乗演算子の位置を調べる・関数exponent_replace(input_2)内で使用
             function where_is_exponentiation(value){
@@ -83,12 +83,12 @@
             }
 
             //変数value内に含まれるsctll_whichに格納されている文字列(sin,cos,tan,log,limのいずれか)の位置を調べる
-            function where_is_sctll(value, sctll_which){
+            /*function where_is_sctll(value, sctll_which){
                 ///console.log("入力:" + value);
                 ///console.log("選択されたsctll:" + sctll_which);
                     if(value.indexOf(sctll_which) >= 0){
-                        /*sctll_whichに格納されている文字列の位置を格納するための、
-                        (要素数)=(sctll_whichの個数)である配列array_place_countを宣言*/
+                        sctll_whichに格納されている文字列の位置を格納するための、
+                        (要素数)=(sctll_whichの個数)である配列array_place_countを宣言
                         var array_place_count = [];
                         //sctll_whichに格納されている文字列の位置を調べ、何文字目かを配列array_place_countに格納
                         for(var p = 0; p <= value.length; p++){
@@ -105,9 +105,7 @@
                     } else {
                         return value;
                 }
-            }
-            ///var test = "abc+sinα"
-            ///console.log("shere_is_sctll:" + where_is_sctll(test, "sin"));
+            }*/
 
             //入力文字列から指数を抽出し、上付き文字に変換する
             function exponent_replace(input_2){
@@ -170,7 +168,7 @@
                 return res.join("");
             }
 
-            function insert_sctll_2(input_insert_sctll, sctll_which_1, sctll_which_2){
+            /*function insert_sctll_2(input_insert_sctll, sctll_which_1, sctll_which_2){
                 ///console.log("入力文字列" + input_insert_sctll);
                 var where_sctll = where_is_sctll(input_insert_sctll, sctll_which_1);
                 if(input_insert_sctll != where_sctll){
@@ -204,7 +202,7 @@
                     return input_insert_sctll;
                 }
                 
-            }
+            }*/
 
             /*function insert_sctll(input){
                 console.log("input:" + input);
