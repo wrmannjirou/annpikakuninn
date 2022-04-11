@@ -12,7 +12,7 @@
             <h1>文字自動置換𝑉𝑒𝑟.𝛿.𝛾</h1>
         </header>
         <p>
-            <input type="text" id="input_place" placeholder="任意の文字列" style="width:200px;height:100px;">
+            <textarea type="text" id="input_place" placeholder="任意の文字列" style="width:200px;height:100px;"></textarea>
             <input type="button" id="button" class="btn" value="𝐶𝑜𝑛𝑣𝑒𝑟𝑡" onclick="convert_a_g_e()" style="width:70px;height:30px;">
         </p>
         <p>
@@ -251,7 +251,7 @@
 
             //クリックイベント・変換された指数の挿入用関数
             function convert_a_g_e(){
-                //入力場所であるinputタグから要素を取得し、これを格納する変数inputを宣言
+                //入力場所であるtextareaタグから要素を取得し、これを格納する変数inputを宣言
                 var input = document.getElementById("input_place").value;
                 ///console.log("入力:" + input);
                 /*冪乗演算子が含まれている場合は関数exponent_replace(input)を実行、
@@ -316,18 +316,18 @@
                     }*/
                 } else {
                     /*「冪乗演算子が含まれていない」⇔「指数の変換が不要」な場合、
-                    関数convert(input_1)に入力文字列(変数input)を渡し、その返り値を出力場所であるinputタグに出力*/
+                    関数convert(input_1)に入力文字列(変数input)を渡し、その返り値を出力場所であるtextareaタグに出力*/
                     output_place.innerHTML = sctll_replace(convert(input));
                 }
             }
 
             //不具合発生時用(一桁の指数にのみ対応)
             /*function convert_a_g_e_2(){
-                //入力場所であるinputタグから要素を取得し、これを格納する変数inputを宣言
+                //入力場所であるtextareaタグから要素を取得し、これを格納する変数inputを宣言
                 var input = document.getElementById("input_place").value;
                 //変換(指数→アルファベットの順に変換)結果を格納する変数outputを宣言
                 var output = convert(convertion_2(input));
-                //出力場所であるinputタグを変数outputに書き換える
+                //出力場所であるtextareaタグを変数outputに書き換える
                 output_place.innerHTML = output
             }*/
 
