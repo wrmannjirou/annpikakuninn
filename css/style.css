@@ -64,12 +64,13 @@ header #logo img{
 	left: 40%;		/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
 	bottom: 50%;	/*ロゴやメニューが入っているブロックに対して、下からの配置場所の指定。*/
 }
-#head_title{
-	text-align: center;
+header h2{
+	position: absolute;
+	margin-left: auto;
+    margin-right: auto;
+	bottom: 40%;
 	font-size: xx-large;
 	margin-top: 13em;
-	/*display: block;
-	position: absolute;
 	left: 35%;		/*ロゴやメニューが入っているブロックに対して、左からの配置場所の指定。*/
 }
 
