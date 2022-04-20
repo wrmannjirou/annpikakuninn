@@ -1,0 +1,21 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+                "name": "latexmk",
+                "command": "latexmk",
+                "args": [
+                    "%DOCFILE%"
+                ],
+                "env": {}
+            },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+                "name": "latexmk 🔃",
+                "tools": [
+                    "latexmk"
+                ]
+            }
+    ],
+    "latex-workshop.view.pdf.viewer": "browser"
+}
