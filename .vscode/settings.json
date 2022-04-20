@@ -1,21 +1,23 @@
 {
-    "latex-workshop.latex.tools": [
-        {
-                "name": "latexmk",
-                "command": "latexmk",
-                "args": [
-                    "%DOCFILE%"
-                ],
-                "env": {}
-            },
-    ],
     "latex-workshop.latex.recipes": [
         {
-                "name": "latexmk 🔃",
-                "tools": [
-                    "latexmk"
-                ]
-            }
+            "name": "ptex2pdf",
+             "tools": [
+                "ptex2pdf"
+            ]
+        }
     ],
-    "latex-workshop.view.pdf.viewer": "browser"
+    "latex-workshop.latex.tools": [
+        {
+            "name": "ptex2pdf",
+            "command": "ptex2pdf",
+            "args": [
+                "-l",
+                "-ot",
+                "-kanji=utf8 -synctex=1",
+                "-interaction=nonstopmode", // エラー発生時に自動でビルド停止
+                "%DOC%"
+            ]
+        }
+    ],
 }
