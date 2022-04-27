@@ -37,17 +37,24 @@
         <div id="contents">
             <div id="new">
                 <h2 class="serif">変換機</h2>
-                <div id="boxcontainer">
-                    <textarea type="text" id="input_place" class="box_btn" class="textbox" placeholder="任意の文字列"></textarea>
+                <h5><a href="javascript:;" onclick="Display_JS('all')">文字・指数を変換</a></h5>
+                <h5><a href="javascript:;" onclick="Display_JS('e_only')">指数のみを変換</a></h5>
+                 
+                <div id="JS">
+                    <div class="boxcontainer">
+                    <textarea type="text" id="input_place_1" class="box_btn" class="textbox" placeholder="任意の文字列"></textarea>
                     <br>
-                    <input type="button" id="convert_button" class="box_btn" value="↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓" onclick="convert_click()">
+                    <input type="button" id="convert_button" class="box_btn" value="↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓" onclick="convert_click_1()">
                     <br>
-                    <textarea id="output_place" class="box_btn" class="textbox" placeholder="出力結果"></textarea>
+                    <textarea id="output_place_1" class="box_btn" class="textbox" placeholder="出力結果"></textarea>
                     <br>
                     <input type="button" id="copybtn" class="box_btn" value="𝐶𝑜𝑝𝑦" onclick="copy()">
                     <input type="button" id="clrbtn" class="box_btn" value="𝐶𝑙𝑒𝑎𝑟" onclick="clr()">
                 </div>
-                <br>
+                </div>
+
+                
+
                 <script type="text/javascript">
                     /*デバッグ用のconsole.logのコメントアウトにはスラッシュを三つ、
                     各関数・メッソド等の簡単な説明のコメントアウトにはその上の行にスラッシュを二つ用いた
@@ -217,19 +224,42 @@
                         return input_lim
                     }
         
+                    function Display_JS(no){
+ 
+                        if(no == "all"){
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_1' class='box_btn' class='textbox' placeholder='任意の文字列'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_1()'><br><textarea id='output_place_1' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
+                        }else if(no == "e_only"){
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_2' class='box_btn' class='textbox' placeholder='任意の文字列'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_2()'><br><textarea id='output_place_2' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy_2()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
+                        }
+                    }
+
                     //クリックイベント用関数
-                    function convert_click(){
+                    function convert_click_1(){
                         //入力場所であるtextareaタグから要素を取得し、これを格納する変数inputを宣言
-                        var input = document.getElementById("input_place").value;
+                        var input = document.getElementById("input_place_1").value;
                         /*冪乗演算子が含まれている場合は関数exponent_r_i(input)を実行、
                         含まれていない場合は関数exponent_r_i(input)を実行しないよう条件分岐*/
                         if(input.indexOf("^") >= 0){
                             var output = exponent_r_i(input)
-                            output_place.innerHTML = sctll_replace(convert(output));
+                            output_place_1.innerHTML = sctll_replace(convert(output));
                         } else {
                             /*「冪乗演算子が含まれていない」⇔「指数の変換が不要」な場合、
                             関数convert(input)に入力文字列(変数input)を渡し、その返り値を出力場所であるtextareaタグに出力*/
-                            output_place.innerHTML = sctll_replace(convert(input));
+                            output_place_1.innerHTML = sctll_replace(convert(input));
+                        }
+                    }
+
+                    function convert_click_2(){
+                        //入力場所であるtextareaタグから要素を取得し、これを格納する変数inputを宣言
+                        var input = document.getElementById("input_place_2").value;
+                        /*冪乗演算子が含まれている場合は関数exponent_r_i(input)を実行、
+                        含まれていない場合は関数exponent_r_i(input)を実行しないよう条件分岐*/
+                        if(input.indexOf("^") >= 0){
+                            output_place_2.innerHTML = exponent_r_i(input)
+                        } else {
+                            /*「冪乗演算子が含まれていない」⇔「指数の変換が不要」な場合、
+                            入力文字列(変数input)を出力場所であるtextareaタグに出力*/
+                            output_place_2.innerHTML = input
                         }
                     }
         
@@ -237,10 +267,17 @@
                     function clr(){
                         window.location.reload();
                     }
-        
+
                     //Copyボタン用関数
                     function copy(){
-                    var copy_target = document.getElementById("output_place");
+                    var copy_target = document.getElementById("output_place_1");
+                    copy_target.select();
+                    document.execCommand("Copy");
+                    //alert("𝐶𝑜𝑝𝑖𝑒𝑑：" + copy_target.value);
+                    }
+
+                    function copy_2(){
+                    var copy_target = document.getElementById("output_place_2");
                     copy_target.select();
                     document.execCommand("Copy");
                     //alert("𝐶𝑜𝑝𝑖𝑒𝑑：" + copy_target.value);
@@ -249,6 +286,7 @@
             </div>
 
             <section id="overview">
+                <br>
                 <h2 class="serif">機能紹介</h2>
                 <!--<h3>機能</h3>-->
                 <table class="ta1">
