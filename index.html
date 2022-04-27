@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>文字自動変換𝑉𝑒𝑟.𝜀.𝛽</title>
+    <title>文字自動変換𝑉𝑒𝑟.𝜁.𝛼</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="文字自動変換">
     <link rel="stylesheet" href="css/style.css">
@@ -21,7 +21,7 @@
         <!--<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>-->
         <div>
             <h1 id="logo"><a href="index.html"><img src="images/harigane.png"></a></h1>
-            <h2 id="head_title" class="serif">文字自動変換𝑉𝑒𝑟.𝜀.𝛽</h2>
+            <h2 id="head_title" class="serif">文字自動変換𝑉𝑒𝑟.𝜁.𝛼</h2>
         </div>
             <nav id="menubar">
                 <ul>
@@ -37,12 +37,16 @@
         <div id="contents">
             <div id="new">
                 <h2 class="serif">変換機</h2>
-                <h5><a href="javascript:;" onclick="Display_JS('all')">文字・指数を変換</a></h5>
-                <h5><a href="javascript:;" onclick="Display_JS('e_only')">指数のみを変換</a></h5>
-                 
+                <div id="select_btn">
+                    <input type="radio" name="switch_btn" class="radiobutton" id="select_all" onclick="Display_JS('all')" value="文字・指数を変換">
+                    <label for="select_all">文字・指数を変換</label>
+                    <input type="radio" name="switch_btn" class="radiobutton" id="select_e" onclick="Display_JS('e_only')" value="指数のみを変換">
+                    <label for="select_e">指数のみを変換</label>
+                </div>
+
                 <div id="JS">
                     <div class="boxcontainer">
-                    <textarea type="text" id="input_place_1" class="box_btn" class="textbox" placeholder="任意の文字列"></textarea>
+                    <textarea type="text" id="input_place_1" class="box_btn" class="textbox" placeholder="文字・指数を変換"></textarea>
                     <br>
                     <input type="button" id="convert_button" class="box_btn" value="↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓" onclick="convert_click_1()">
                     <br>
@@ -227,9 +231,9 @@
                     function Display_JS(no){
  
                         if(no == "all"){
-                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_1' class='box_btn' class='textbox' placeholder='任意の文字列'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_1()'><br><textarea id='output_place_1' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_1' class='box_btn' class='textbox' placeholder='文字・指数を変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_1()'><br><textarea id='output_place_1' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
                         }else if(no == "e_only"){
-                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_2' class='box_btn' class='textbox' placeholder='任意の文字列'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_2()'><br><textarea id='output_place_2' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy_2()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_2' class='box_btn' class='textbox' placeholder='指数のみを変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_2()'><br><textarea id='output_place_2' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy_2()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
                         }
                     }
 
@@ -292,6 +296,17 @@
                 <table class="ta1">
                     <caption class="serif">機能一覧</caption>
                     <tr>
+                        <th class="serif">モード切り替え</th>
+                        <td class="serif">
+                            𝑉𝑒𝑟.𝜁.𝛼から、入力欄の上のボタンより、
+                            <ol>
+                                <li>アルファベット・ギリシャ文字・指数を全て変換するモード</li>
+                                <li>指数のみを変換するモード</li>
+                            </ol>
+                            を選択
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="serif">ボタン</th>
                         <td class="serif">Convertボタンで入力文字列を変換<br>
                             Copyボタンで出力結果をコピー<br>
@@ -312,7 +327,7 @@
                     </tr>
                     <tr>
                         <th class="serif">変換回避文字</th>
-                        <td class="serif">𝑉𝑒𝑟.𝛿.𝛾から正弦、余弦、正接、対数、極限に関して、文字列"sin","cos","tan","log","lim"を変換しないように改良<br>
+                        <td class="serif">𝑉𝑒𝑟.𝛿.𝛾から、正弦・余弦・正接・対数・極限に関して、文字列"sin","cos","tan","log","lim"を変換しないように改良<br>
                             例:sin^2x+cos^2x=1 → sin²𝑥+cos²𝑥=𝟷</td>
                     </tr>
                     <!--
