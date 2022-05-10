@@ -61,16 +61,16 @@
 
                 <script type="text/javascript">
                     /*デバッグ用のconsole.logのコメントアウトにはスラッシュを三つ、
-                    各関数・メッソド等の簡単な説明のコメントアウトにはその上の行にスラッシュを二つ用いた
-                    エディタの置換機能で"///"→""とすることでデバッグ用のconsole.logのコメントアウトのみを解除できる*/
+                    各関数・メッソド等の簡単な説明のコメントアウトにはその上の行にスラッシュを二つ用いた*/
         
                     //指数を上付き文字に変換・関数convert_click()内で使用
                     function exponent_r_i(input){
-                        //関数exponent_replace(input)で上付き文字に変換された指数を格納する配列output_eを宣言
+                        //関数exponent_replace(input)によって上付き文字に変換された指数を格納する配列output_eを宣言
                         var output_e = exponent_replace(input);
                         ///console.log("output_e:" + output_e);
                         //関数where_is_exponentiation(input)で特定した冪乗演算子の位置を格納する配列where_exponentiationを宣言
                         var where_exponentiation = where_is_exponentiation(input);
+                        console.log(where_exponentiation);
                         ///console.log("input:" + input);
                         ///console.log("^の場所:" + where_exponentiation);
                         ///console.log("繰り返し回数:" + where_exponentiation.length)
@@ -118,11 +118,11 @@
                         return output;
                     }
         
-                    //アルファベット・ギリシャ文字・数字を変換
+                    //アルファベット・ギリシャ文字を変換
                     function convert(input){         
-                        //検索用の入力文字列に含まれると予想される変換前のアルファベット・ギリシャ文字・数字を格納する変数を宣言
+                        //検索用の入力文字列に含まれると予想される変換前のアルファベット・ギリシャ文字を格納する変数を宣言
                         const str_search = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω";
-                        //変換用のイタリック体のアルファベット・ギリシャ文字・数字を格納する配列を宣言
+                        //変換用のイタリック体のアルファベット・ギリシャ文字を格納する配列を宣言
                         const array_2 = ["𝐴", "𝐵", "𝐶", "𝐷", "𝐸", "𝐹", "𝐺", "𝐻", "𝐼", "𝐽", "𝐾", "𝐿", "𝑀", "𝑁", "𝑂", "𝑃", "𝑄", "𝑅", "𝑆", "𝑇", "𝑈", "𝑉", "𝑊", "𝑋", "𝑌", "𝑍", "𝑎", "𝑏", "𝑐", "𝑑", "𝑒", "𝑓", "𝑔", "ℎ", "𝑖", "𝑗", "𝑘", "𝑙", "𝑚", "𝑛", "𝑜", "𝑝", "𝑞", "𝑟", "𝑠", "𝑡", "𝑢", "𝑣", "𝑤", "𝑥", "𝑦", "𝑧", "𝛢", "𝛣", "𝛤", "𝛥", "𝛦", "𝛧", "𝛨", "𝛩", "𝛪", "𝛫", "𝛬", "𝛭", "𝛮", "𝛯", "𝛰", "𝛱", "𝛲", "𝛴", "𝛵", "𝛶", "𝛷", "𝛸", "𝛹", "𝛺", "𝛼", "𝛽", "𝛾", "𝛿", "𝜀", "𝜁", "𝜂", "𝜃", "𝜄", "𝜅", "𝜆", "𝜇", "𝜈", "𝜉", "𝜊", "𝜋", "𝜌", "𝜎", "𝜏", "𝜐", "𝜑", "𝜒", "𝜓", "𝜔"];
                         //(要素数)=(入力文字列の文字数)である配列resを宣言
                         var res = [input.length];
@@ -158,7 +158,7 @@
                                 ///console.log("e_p["+ u + "]:" + e_p[u]);
                                 //substrメソッドで冪乗演算子の直後の文字列を一文字ずつ切り出すし、切り出された文字列が数か否かをisNaN関数を用いて判定
                                 //数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了
-                                for(var i = 1; i < input.length - e_p[u] && isNaN(input.substr(e_p[u] + i, 1)) == false; i++){
+                                for(var i = 1; i < input.length - e_p[u] && (isNaN(input.substr(e_p[u] + i, 1)) == false || charCodeAt(input.substr(e_p[u] + i, 1) > 41 )); i++){
                                     ///console.log("input.substr(e_p[u] + i, 1):" + input.substr(e_p[u] + i, 1));
                                     ///console.log("input.substr(e_p[u] + 1, 1):抽出された指数:" + input.substr(e_p[u] + i, 1))
                                     array_exponents.push(input.substr(e_p[u] + i, 1));
@@ -170,7 +170,7 @@
                                 次の冪乗演算子の位置に対する処理(現在のe_pのインデックスに1を足したときの処理)でも使用するので一旦初期化*/
                                 array_exponents = [];
                                 ///console.log("抽出・結合された指数:" + exponents);
-                                //抽出された指数を上付き文字に関数convertion(exponents)を用いて変換し、変数exponents_extractedに格納
+                                //抽出された指数を上付き文字に関数convertion(exponents)を用いて変換し、配列exponent_replacedに格納
                                 exponent_replaced.push(convertion(exponents));
                             }
                         }
@@ -227,16 +227,6 @@
                         //変換前に戻されたsctllを返り値に設定
                         return input_lim
                     }
-        
-                    //モード切り替え用関数
-                    function Display_JS(no){
-                        //アルファベット・ギリシャ文字・指数を全て変換するモードと指数のみを変換するモードを切り替えるための条件分岐
-                        if(no == "all"){
-                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_1' class='box_btn' class='textbox' placeholder='文字・指数を変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_1()'><br><textarea id='output_place_1' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
-                        } else if(no == "e_only"){
-                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_2' class='box_btn' class='textbox' placeholder='指数のみを変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_2()'><br><textarea id='output_place_2' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy_2()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
-                        }
-                    }
 
                     //アルファベット・ギリシャ文字・指数を全て変換するモードのクリックイベント用関数
                     function convert_click_1(){
@@ -245,12 +235,23 @@
                         /*冪乗演算子が含まれている場合は関数exponent_r_i(input)を実行、
                         含まれていない場合は関数exponent_r_i(input)を実行しないよう条件分岐*/
                         if(input.indexOf("^") >= 0){
-                            var output = exponent_r_i(input)
+                            var output = exponent_r_i(input);
+                            console.log(output);
                             output_place_1.innerHTML = sctll_replace(convert(output));
                         } else {
                             /*「冪乗演算子が含まれていない」⇔「指数の変換が不要」な場合、
                             関数convert(input)に入力文字列(変数input)を渡し、その返り値を出力場所であるtextareaタグに出力*/
                             output_place_1.innerHTML = sctll_replace(convert(input));
+                        }
+                    }
+        
+                    //モード切り替え用関数
+                    function Display_JS(no){
+                        //アルファベット・ギリシャ文字・指数を全て変換するモードと指数のみを変換するモードを切り替えるための条件分岐
+                        if(no == "all"){
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_1' class='box_btn' class='textbox' placeholder='文字・指数を変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_1()'><br><textarea id='output_place_1' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
+                        } else if(no == "e_only"){
+                            document.getElementById("JS").innerHTML = "<div class='boxcontainer'><textarea type='text' id='input_place_2' class='box_btn' class='textbox' placeholder='指数のみを変換'></textarea><br><input type='button' id='convert_button' class='box_btn' value='↓ 𝐶𝑜𝑛𝑣𝑒𝑟𝑡 ↓' onclick='convert_click_2()'><br><textarea id='output_place_2' class='box_btn' class='textbox' placeholder='出力結果'></textarea><br><input type='button' id='copybtn' class='box_btn' value='𝐶𝑜𝑝𝑦' onclick='copy_2()'><input type='button' id='clrbtn' class='box_btn' value='𝐶𝑙𝑒𝑎𝑟' onclick='clr()'></div>";
                         }
                     }
 
