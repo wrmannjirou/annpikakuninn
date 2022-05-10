@@ -158,7 +158,7 @@
                                 ///console.log("e_p["+ u + "]:" + e_p[u]);
                                 //substrメソッドで冪乗演算子の直後の文字列を一文字ずつ切り出すし、切り出された文字列が数か否かをisNaN関数を用いて判定
                                 //数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了
-                                for(var i = 1; i < input.length - e_p[u] && (isNaN(input.substr(e_p[u] + i, 1)) == false || charCodeAt(input.substr(e_p[u] + i, 1) > 41 )); i++){
+                                for(var i = 1; i < input.length - e_p[u] && (isNaN(input.substr(e_p[u] + i, 1)) == false); i++){
                                     ///console.log("input.substr(e_p[u] + i, 1):" + input.substr(e_p[u] + i, 1));
                                     ///console.log("input.substr(e_p[u] + 1, 1):抽出された指数:" + input.substr(e_p[u] + i, 1))
                                     array_exponents.push(input.substr(e_p[u] + i, 1));
