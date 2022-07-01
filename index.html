@@ -153,13 +153,14 @@
                         //変換後の指数を格納する配列exponent_replacedを宣言
                         var exponent_replaced = [];
                         //冪乗演算子の数(=exponentiation_where.length)だけ「変換前の指数を抽出し、格納する」処理を繰り返す
+                        //冪乗演算子の直後の文字がアルファベットから否かを判定するための正規表現を格納する定数regexを宣言
+                        const regex = /^[a-z]*$/;
                         for(var u = 0; u <= exponentiation_where.length; u++){
                             //「冪乗演算子が見つけらない」⇔「exponentiation_where[u] < 0」場合を排除
                             if(exponentiation_where[u] >= 0){
                                 ///console.log("exponentiation_where["+ u + "]:" + exponentiation_where[u]);
                                 /*substrメソッドで冪乗演算子の直後の文字列を一文字ずつ切り出すし、切り出された文字列が数か否かをisNaN関数を用いて判定
                                 //数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了*/
-                                const regex = /^[a-z]*$/;
                                 for(var i = 1; i < input.length - exponentiation_where[u] && ((isNaN(input.substr(exponentiation_where[u] + i, 1)) == false) || regex.test(input.substr(exponentiation_where[u] + i, 1)) == true); i++){
                                     ///console.log("input.substr(exponentiation_where[u] + i, 1):" + input.substr(exponentiation_where[u] + i, 1));
                                     ///console.log("input.substr(exponentiation_where[u] + 1, 1):抽出された指数:" + input.substr(exponentiation_where[u] + i, 1))
