@@ -65,6 +65,7 @@
         
                     //指数を上付き文字に変換
                     function exponent_r_i(input){
+                        console.log(input);
                         /*関数exponent_replace(input)によって上付き文字に変換された指数を格納する配列output_eを宣言
                         ※関数exponent_replace(input)は入力文字列に含まれる指数を先に全て抽出し、変換してからその結果を配列として出力する*/
                         var output_e = exponent_replace(input);
@@ -153,17 +154,17 @@
                         //変換後の指数を格納する配列exponent_replacedを宣言
                         var exponent_replaced = [];
                         //冪乗演算子の数(=exponentiation_where.length)だけ「変換前の指数を抽出し、格納する」処理を繰り返す
-                        //冪乗演算子の直後の文字がアルファベットから否かを判定するための正規表現を格納する定数regexを宣言
+                        //冪乗演算子の直後の文字がアルファベットか否かを判定するための正規表現を格納する定数regexを宣言
                         const regex = /^[a-z]*$/;
                         for(var u = 0; u <= exponentiation_where.length; u++){
                             //「冪乗演算子が見つけらない」⇔「exponentiation_where[u] < 0」場合を排除
                             if(exponentiation_where[u] >= 0){
                                 ///console.log("exponentiation_where["+ u + "]:" + exponentiation_where[u]);
                                 /*substrメソッドで冪乗演算子の直後の文字列を一文字ずつ切り出すし、切り出された文字列が数か否かをisNaN関数を用いて判定
-                                //数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了*/
+                                数である場合はそれを配列array_exponentsに格納、数でない場合はsubstrによる切り出しを終了*/
                                 for(var i = 1; i < input.length - exponentiation_where[u] && ((isNaN(input.substr(exponentiation_where[u] + i, 1)) == false) || regex.test(input.substr(exponentiation_where[u] + i, 1)) == true); i++){
                                     ///console.log("input.substr(exponentiation_where[u] + i, 1):" + input.substr(exponentiation_where[u] + i, 1));
-                                    ///console.log("input.substr(exponentiation_where[u] + 1, 1):抽出された指数:" + input.substr(exponentiation_where[u] + i, 1))
+                                    ///console.log("input.substr(exponentiation_where[u] + 1, 1):抽出された指数:" + input.substr(exponentiation_where[u] + i, 1));
                                     array_exponents.push(input.substr(exponentiation_where[u] + i, 1));
                                 }
                                 ///console.log("抽出された指数:" + array_exponents);
@@ -206,41 +207,47 @@
                     function convertion(extracted){
                         //引数extracted:抽出された指数
                         //replaceAllメソッドで抽出された指数の0~9,a~zを上付き文字に変換
-                        var extracted_0 = extracted.replaceAll("0", "⁰");
-                        var extracted_1 = extracted_0.replaceAll("1", "¹");
-                        var extracted_2 = extracted_1.replaceAll("2", "²");
-                        var extracted_3 = extracted_2.replaceAll("3", "³");
-                        var extracted_4 = extracted_3.replaceAll("4", "⁴");
-                        var extracted_5 = extracted_4.replaceAll("5", "⁵");
-                        var extracted_6 = extracted_5.replaceAll("6", "⁶");
-                        var extracted_7 = extracted_6.replaceAll("7", "⁷");
-                        var extracted_8 = extracted_7.replaceAll("8", "⁸");
-                        var extracted_9 = extracted_8.replaceAll("9", "⁹");
-                        var extracted_a = extracted_9.replaceAll("a", "ᵃ");
-                        var extracted_b = extracted_a.replaceAll("b", "ᵇ");
-                        var extracted_c = extracted_b.replaceAll("c", "ᶜ");
-                        var extracted_d = extracted_c.replaceAll("d", "ᵈ");
-                        var extracted_e = extracted_d.replaceAll("e", "ᵉ");
-                        var extracted_f = extracted_e.replaceAll("f", "ᶠ");
-                        var extracted_g = extracted_f.replaceAll("g", "ᵍ");
-                        var extracted_h = extracted_g.replaceAll("h", "ʰ");
-                        var extracted_i = extracted_h.replaceAll("i", "ⁱ");
-                        var extracted_j = extracted_i.replaceAll("j", "ʲ");
-                        var extracted_k = extracted_j.replaceAll("k", "ᵏ");
-                        var extracted_l = extracted_k.replaceAll("l", "ˡ");
-                        var extracted_m = extracted_l.replaceAll("m", "ᵐ");
-                        var extracted_n = extracted_m.replaceAll("n", "ⁿ");
-                        var extracted_o = extracted_n.replaceAll("o", "ᵒ");
-                        var extracted_p = extracted_o.replaceAll("p", "ᵖ");
-                        var extracted_r = extracted_p.replaceAll("r", "ʳ");
-                        var extracted_s = extracted_r.replaceAll("s", "ˢ");
-                        var extracted_t = extracted_s.replaceAll("t", "ᵗ");
-                        var extracted_u = extracted_t.replaceAll("u", "ᵘ");
-                        var extracted_v = extracted_u.replaceAll("v", "ᵛ");
-                        var extracted_w = extracted_v.replaceAll("w", "ʷ");
-                        var extracted_x = extracted_w.replaceAll("x", "ˣ");
-                        var extracted_y = extracted_x.replaceAll("y", "ʸ");
-                        var extracted_z = extracted_y.replaceAll("z", "ᶻ");
+                        console.log("extracted: " + extracted);
+                        if(extracted.substr(0, 1) == "("){
+                            return ("^" + extracted);
+                        } else {
+                            var extracted_0 = extracted.replaceAll("0", "⁰");
+                            var extracted_1 = extracted_0.replaceAll("1", "¹");
+                            var extracted_2 = extracted_1.replaceAll("2", "²");
+                            var extracted_3 = extracted_2.replaceAll("3", "³");
+                            var extracted_4 = extracted_3.replaceAll("4", "⁴");
+                            var extracted_5 = extracted_4.replaceAll("5", "⁵");
+                            var extracted_6 = extracted_5.replaceAll("6", "⁶");
+                            var extracted_7 = extracted_6.replaceAll("7", "⁷");
+                            var extracted_8 = extracted_7.replaceAll("8", "⁸");
+                            var extracted_9 = extracted_8.replaceAll("9", "⁹");
+                            var extracted_a = extracted_9.replaceAll("a", "ᵃ");
+                            var extracted_b = extracted_a.replaceAll("b", "ᵇ");
+                            var extracted_c = extracted_b.replaceAll("c", "ᶜ");
+                            var extracted_d = extracted_c.replaceAll("d", "ᵈ");
+                            var extracted_e = extracted_d.replaceAll("e", "ᵉ");
+                            var extracted_f = extracted_e.replaceAll("f", "ᶠ");
+                            var extracted_g = extracted_f.replaceAll("g", "ᵍ");
+                            var extracted_h = extracted_g.replaceAll("h", "ʰ");
+                            var extracted_i = extracted_h.replaceAll("i", "ⁱ");
+                            var extracted_j = extracted_i.replaceAll("j", "ʲ");
+                            var extracted_k = extracted_j.replaceAll("k", "ᵏ");
+                            var extracted_l = extracted_k.replaceAll("l", "ˡ");
+                            var extracted_m = extracted_l.replaceAll("m", "ᵐ");
+                            var extracted_n = extracted_m.replaceAll("n", "ⁿ");
+                            var extracted_o = extracted_n.replaceAll("o", "ᵒ");
+                            var extracted_p = extracted_o.replaceAll("p", "ᵖ");
+                            var extracted_r = extracted_p.replaceAll("r", "ʳ");
+                            var extracted_s = extracted_r.replaceAll("s", "ˢ");
+                            var extracted_t = extracted_s.replaceAll("t", "ᵗ");
+                            var extracted_u = extracted_t.replaceAll("u", "ᵘ");
+                            var extracted_v = extracted_u.replaceAll("v", "ᵛ");
+                            var extracted_w = extracted_v.replaceAll("w", "ʷ");
+                            var extracted_x = extracted_w.replaceAll("x", "ˣ");
+                            var extracted_y = extracted_x.replaceAll("y", "ʸ");
+                            var extracted_z = extracted_y.replaceAll("z", "ᶻ");
+                        }
+                        
                         //0~9の数字・a~zのアルファベットが上付き文字に変換された文字列の格納される変数extracted_zを関数の返り値に設定
                         return extracted_z
                     }
