@@ -259,8 +259,11 @@
                         var input_tan = input_cos.replaceAll(/𝑡𝑎𝑛/g, "tan");
                         var input_log = input_tan.replaceAll(/𝑙𝑜𝑔/g, "log");
                         var input_lim = input_log.replaceAll(/𝑙𝑖𝑚/g, "lim");
+                        var input_sin_2 = input_lim.replaceAll(/ˢⁱⁿ/g, "sin");
+                        var input_cos_2 = input_lim.replaceAll(/ᶜᵒˢ/g, "cos");
+                        var input_tan_2 = input_cos_2.replaceAll(/ᵗᵃⁿ/g, "tan");
                         //変換前に戻されたsctllを返り値に設定
-                        return input_lim
+                        return input_tan_2;
                     }
 
                     //アルファベット・ギリシャ文字・指数を全て変換するモードのクリックイベント用関数
